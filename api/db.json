@@ -3,12 +3,16 @@
     {
       "id": 1,
       "title":"Grociers",
-      "list": []
+      "list": [
+        "sugar", "dhal"
+      ]
     },
     {
       "id": 2,
       "title":"Homework",
-      "list": []
+      "list": [
+        "social", "maths"
+      ]
     }
   ]
 }

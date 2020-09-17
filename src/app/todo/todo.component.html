@@ -1,1 +1,11 @@
 <h4>To-Do Body</h4>
+<ul>
+  <li *ngFor="let todo of todo_list">
+    {{todo.title}}
+    <ol>
+      <li *ngFor="let item of todo.list">
+        {{item}}
+      </li>
+    </ol>
+  </li>
+</ul>
