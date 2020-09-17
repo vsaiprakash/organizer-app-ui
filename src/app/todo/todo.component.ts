@@ -9,26 +9,17 @@ import { catchError, retry } from 'rxjs/operators';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  todo_list = this.http.get("http://localhost:3000/api/todo-list");
+  todo_list: any;
+  todo_list_obs: Observable<any> = this.http.get("/api/todo-list");
 
-  // todo_list =  [
-  //   {
-  //     "id": 1,
-  //     "title":"Grociers",
-  //     "list": [
-  //       "sugar", "dhal"
-  //     ]
-  //   },
-  //   {
-  //     "id": 2,
-  //     "title":"Homework",
-  //     "list": [
-  //       "social", "maths"
-  //     ]
-  //   }
-  // ];
+  //making it a relative call to avoid CORS,
+  //and we will proxy te JSON server with our angular server.
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {
+    this.todo_list_obs.subscribe(list => this.todo_list = list);
+
+  }
 
   ngOnInit(): void {
   }
