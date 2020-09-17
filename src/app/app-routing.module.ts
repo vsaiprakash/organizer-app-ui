@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TodoComponent } from './todo/todo.component';
 
 const routes: Routes = [
-  {path: 'todo-window', component: TodoComponent},
+  {path: 'to-do', component: TodoComponent},
 ];
 
 @NgModule({
