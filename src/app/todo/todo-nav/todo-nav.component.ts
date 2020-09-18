@@ -8,8 +8,12 @@ import { TodoService } from './../todo.service';
   styleUrls: ['./todo-nav.component.css']
 })
 export class TodoNavComponent implements OnInit {
+  todo_master_list:any;
 
-  constructor(TodoService) { }
+  constructor(todoService: TodoService) {
+    this.todo_master_list = todoService.getToDoMasterList()
+                                       .subscribe(list => this.todo_master_list = list);
+  }
 
   ngOnInit(): void {
   }

@@ -11,6 +11,8 @@ import { MenuComponent } from './menu/menu.component';
 import { TodoRootComponent } from './todo/todo-root/todo-root.component';
 import { TodoNavComponent } from './todo/todo-nav/todo-nav.component';
 import { TodoContentComponent } from './todo/todo-content/todo-content.component';
+import { TodoService } from './todo/todo.service';
+import { TodoDaoService } from './dao/todo-dao.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { TodoContentComponent } from './todo/todo-content/todo-content.component
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    TodoDaoService,
+    TodoService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
