@@ -1,17 +1,35 @@
 {
-  "todo-list": [
+  "todo-master-list": [
     {
       "id": 1,
       "title":"Grociers",
-      "list": [
-        "sugar", "dhal"
+      "todo-list": [
+        {
+          "id":1,
+          "completed":false,
+          "content":"sugar"
+        },
+        {
+          "id":2,
+          "completed":false,
+          "content":"dhal"
+        }
       ]
     },
     {
       "id": 2,
       "title":"Homework",
-      "list": [
-        "social", "maths"
+      "todo-list": [
+        {
+          "id":1,
+          "completed":false,
+          "content":"social"
+        },
+        {
+          "id":2,
+          "completed":false,
+          "content":"math"
+        }
       ]
     }
   ]
