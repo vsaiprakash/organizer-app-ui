@@ -1,0 +1,20 @@
+{
+  "todo-list": [
+    {
+      "id": 1,
+      "title": "Grociers",
+      "list": [
+        "sugar",
+        "dhal"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Homework",
+      "list": [
+        "social",
+        "maths"
+      ]
+    }
+  ]
+}

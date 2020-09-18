@@ -8,7 +8,9 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
-import { TodoComponent } from './todo/todo.component';
+import { TodoRootComponent } from './todo/todo-root/todo-root.component';
+import { TodoNavComponent } from './todo/todo-nav/todo-nav.component';
+import { TodoContentComponent } from './todo/todo-content/todo-content.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { TodoComponent } from './todo/todo.component';
     BodyComponent,
     FooterComponent,
     MenuComponent,
-    TodoComponent
+    TodoRootComponent,
+    TodoNavComponent,
+    TodoContentComponent
   ],
   imports: [
     BrowserModule,
