@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-root.component.css']
 })
 export class TodoRootComponent implements OnInit {
+  todo_list_selected_in_nav_id: number;
 
   constructor() { }
+
+  addItem(id: number){
+    this.todo_list_selected_in_nav_id = id;
+  }
 
   ngOnInit(): void {
   }

@@ -1,2 +1,2 @@
-<app-todo-nav></app-todo-nav>
-<app-todo-content></app-todo-content>
+<app-todo-nav (todoListIdEvent)="addItem($event)"></app-todo-nav>
+<app-todo-content [todo_list_selected_id]="todo_list_selected_in_nav_id" ></app-todo-content>

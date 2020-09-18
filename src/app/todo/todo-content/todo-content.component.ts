@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, Input, OnInit } from '@angular/core';
 import { TodoService } from './../todo.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { TodoService } from './../todo.service';
   styleUrls: ['./todo-content.component.css']
 })
 export class TodoContentComponent implements OnInit {
-  todo_list_selected_id: number;
+  @Input() todo_list_selected_id: number;
 
   constructor(todoService: TodoService) { }
 //.subscribe(list => this.todo_curr_list = list);
