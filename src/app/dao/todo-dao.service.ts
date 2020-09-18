@@ -7,16 +7,26 @@ import { Observable, throwError } from 'rxjs';
 })
 export class TodoDaoService {
 
-  todo_list: any;
-  todo_list_obs: Observable<any> = this.http.get("/api/todo-list");
-
-  //making it a relative call to avoid CORS,
-  //and we will proxy te JSON server with our angular server.
-
+  todo_master_list: any;
+  todo_curr_list: any;
 
   constructor(private http: HttpClient) {
-    this.todo_list_obs.subscribe(list => this.todo_list = list);
+
   }
 
+  //for todo nav
+  getToDoMasterList(): any{
+    this.http
+        .get("/api/todo-list")
+        .subscribe(list => this.todo_master_list = list);
+    return this.todo_master_list;
+  }
 
+  //for todo content
+  getToDoList(listId: number): any{
+    this.http
+        .get("/api/todo-list/"+listId)
+        .subscribe(list => this.todo_curr_list = list);
+    return null;
+  }
 }

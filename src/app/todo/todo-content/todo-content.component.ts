@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoDaoService } from './../../dao/todo-dao.service';
+import { TodoService } from './../todo.service';
 
 @Component({
   selector: 'app-todo-content',
@@ -8,7 +8,7 @@ import { TodoDaoService } from './../../dao/todo-dao.service';
 })
 export class TodoContentComponent implements OnInit {
 
-  constructor(TodoDaoService) { }
+  constructor(TodoService) { }
 
   ngOnInit(): void {
   }

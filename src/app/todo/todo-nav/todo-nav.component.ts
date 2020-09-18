@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoDaoService } from './../../dao/todo-dao.service';
-TodoDaoService
+import { TodoService } from './../todo.service';
+
 
 @Component({
   selector: 'app-todo-nav',
@@ -9,7 +9,7 @@ TodoDaoService
 })
 export class TodoNavComponent implements OnInit {
 
-  constructor(TodoDaoService) { }
+  constructor(TodoService) { }
 
   ngOnInit(): void {
   }
