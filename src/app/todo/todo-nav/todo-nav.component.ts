@@ -14,14 +14,15 @@ export class TodoNavComponent implements OnInit {
   @Output() todoListIdEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(todoService: TodoService) {
-    this.todo_master_list = todoService.getToDoMasterList()
-                                       .subscribe(list => this.todo_master_list = list);
+    todoService.getToDoMasterList()
+               .subscribe(list => this.todo_master_list = list);
   }
 
   onSelected(id: number){
     //send id to todo-content component
     //for displaying its contents
     this.todoListIdEvent.emit(id);
+
   }
 
   ngOnInit(): void {

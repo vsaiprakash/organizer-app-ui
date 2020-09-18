@@ -16,11 +16,11 @@ export class TodoDaoService {
 
   //for todo nav
   getToDoMasterList(): any{
-    return this.http.get("/api/todo-master-list");
+    return this.http.get("/api/todomasterlist");
   }
 
   //for todo content
   getToDoList(listId: number): any{
-    return this.http.get("/api/todo-master-list/"+listId);
+    return this.http.get("/api/todomasterlist/"+listId);
   }
 }

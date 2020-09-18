@@ -1,9 +1,9 @@
 {
-  "todo-master-list": [
+  "todomasterlist": [
     {
       "id": 1,
       "title":"Grociers",
-      "todo-list": [
+      "todolist": [
         {
           "id":1,
           "completed":false,
@@ -19,7 +19,7 @@
     {
       "id": 2,
       "title":"Homework",
-      "todo-list": [
+      "todolist": [
         {
           "id":1,
           "completed":false,

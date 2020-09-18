@@ -1,1 +1,8 @@
 <h3>ToDo List Id selected in Nav: {{todo_list_selected_id}}</h3>
+<!-- {{todo_list_selected.todo-list}} -->
+{{todo_list_selected.title}}
+<ol>
+  <li *ngFor="let item of todo_list_selected.todolist">
+    {{item.content}}
+  </li>
+</ol>
