@@ -20,4 +20,9 @@ export class TodoService {
   getToDoList(listId: number): any{
     return this.todoDaoService.getToDoList(listId);
   }
+
+  //completion status of list item
+  updateToDoList(listId: number, jsonBody: any): any{
+    return this.todoDaoService.updateToDoList(listId, jsonBody);
+  }
 }

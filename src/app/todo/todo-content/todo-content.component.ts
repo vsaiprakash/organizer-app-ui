@@ -13,8 +13,10 @@ import { TodoService } from './../todo.service';
 export class TodoContentComponent implements OnInit, OnChanges {
   @Input() todo_list_selected_id: number;
   todo_list_selected: any;
+  todolist: any;
   todoService: TodoService;
 
+  todo_list_updated: any;
 
   constructor(todoService: TodoService) {
     this.todoService = todoService;
@@ -25,8 +27,8 @@ export class TodoContentComponent implements OnInit, OnChanges {
       this.todo_list_selected_id = 1;
     }
 
-    this.todoService.getToDoList(1)
-               .subscribe(list => this.todo_list_selected = list);
+    this.todoService.getToDoList(this.todo_list_selected_id)
+                    .subscribe(list => this.todo_list_selected = list);
   }
 
 
@@ -40,7 +42,50 @@ export class TodoContentComponent implements OnInit, OnChanges {
 
   onChange(){
     this.todoService.getToDoList(this.todo_list_selected_id)
-    .subscribe(list => this.todo_list_selected = list);
+                    .subscribe(list => this.todo_list_selected = list);
+  }
+
+  completionItemStyleStrikeThrough: string = "line-through";
+  completionItemStyleNone: string = "none";
+
+  onCheckedCompleted(itemId: number){
+    this.todolist = this.todo_list_selected.todolist;
+    let status = false;
+    console.info(" BEFORE "+JSON.stringify(this.todolist));
+    //update in local todolist
+    for(let i=0; i < this.todolist.length; ++i){
+
+      if(this.todolist[i].id==itemId){
+        if(this.todolist[i].completed==true){
+          status = false;
+        }
+        else{
+          status = true;
+        }
+
+        this.todolist[i].completed=status;
+        this.todo_list_selected.todolist = this.todolist;
+      }
+    }
+
+    console.info(" AFTER "+JSON.stringify(this.todolist));
+    //after updated in local list
+    //push (PUT) the current local list to DB
+    this.updateToDoListToDB();
+
+    this.onChange();
+  }
+
+
+  updateToDoListToDB(){
+    //just update the current snapshot of updated todo_list to DB
+
+    this.todoService
+            .updateToDoList(this.todo_list_selected_id, this.todo_list_selected)
+            .subscribe(list => {
+              this.todo_list_updated = list
+              console.info("ToDoList updated to DB - "+JSON.stringify(this.todo_list_updated));
+            });
   }
 
 }

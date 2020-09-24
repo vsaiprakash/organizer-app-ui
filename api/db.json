@@ -2,33 +2,33 @@
   "todomasterlist": [
     {
       "id": 1,
-      "title":"Grociers",
+      "title": "Grociers",
       "todolist": [
         {
-          "id":1,
-          "completed":false,
-          "content":"sugar"
+          "id": 1,
+          "completed": false,
+          "content": "sugar"
         },
         {
-          "id":2,
-          "completed":false,
-          "content":"dhal"
+          "id": 2,
+          "completed": false,
+          "content": "dhal"
         }
       ]
     },
     {
       "id": 2,
-      "title":"Homework",
+      "title": "Homework",
       "todolist": [
         {
-          "id":1,
-          "completed":false,
-          "content":"social"
+          "id": "1",
+          "completed": false,
+          "content": "social"
         },
         {
-          "id":2,
-          "completed":false,
-          "content":"math"
+          "id": "2",
+          "completed": false,
+          "content": "math"
         }
       ]
     }
