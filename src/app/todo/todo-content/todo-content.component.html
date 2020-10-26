@@ -2,6 +2,12 @@
 <!-- {{todo_list_selected.todo-list}} -->
 <div *ngIf="todo_list_selected">
   <h3>{{todo_list_selected.title}}</h3>
+</div>
+<form (ngSubmit)="onSubmitItem()" >
+  <input type="text" placeholder="Enter list item" [(ngModel)]="new_item_content" name="newitem">
+  <input type="submit" value="+">
+</form>
+<div *ngIf="todo_list_selected">
   <ol>
     <li *ngFor="let todo_list_item of todo_list_selected.todolist">
 
@@ -9,10 +15,16 @@
 
       <span
         [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
+        {{todo_list_selected.todolist.indexOf(todo_list_item)+1}}
+      </span>
+
+      <span
+        [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
         {{todo_list_item.content}}
       </span>
 
       <input type="button" value="Edit" [disabled]=todo_list_item.completed>
+      <input type="button" value="Delete" (click)="deleteItem(todo_list_selected.todolist.indexOf(todo_list_item))">
     </li>
   </ol>
 </div>

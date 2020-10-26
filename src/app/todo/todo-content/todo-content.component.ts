@@ -72,8 +72,6 @@ export class TodoContentComponent implements OnInit, OnChanges {
     //after updated in local list
     //push (PUT) the current local list to DB
     this.updateToDoListToDB();
-
-    this.onChange();
   }
 
 
@@ -86,6 +84,43 @@ export class TodoContentComponent implements OnInit, OnChanges {
               this.todo_list_updated = list
               console.info("ToDoList updated to DB - "+JSON.stringify(this.todo_list_updated));
             });
+  }
+
+  new_item_content: String = "";
+
+  onSubmitItem(){
+    //add the selected item to current todomasterlist's todolist
+    this.todolist = this.todo_list_selected.todolist;
+    let new_id = this.todolist.length+1;
+    /*
+        {
+          "id": 1,
+          "completed": true,
+          "content": "sugar"
+        }
+    */
+    let item = {
+      "id":new_id,
+      "completed": false,
+      "content":this.new_item_content
+    };
+    console.log("New Item:"+JSON.stringify(item));
+    console.log(">>ToDoList Length:"+JSON.stringify(this.todolist.length));
+    // this.todolist[this.todolist.length] = item;
+    this.todolist.push(item);//more meaningful than above line
+    this.todo_list_selected.todolist = this.todolist;
+    console.log("ToDoList after New Item Added:"+JSON.stringify(this.todolist));
+
+    this.updateToDoListToDB();
+    //reset the text in input
+    this.new_item_content = "";
+  }
+
+  deleteItem(index: number){
+    this.todolist = this.todo_list_selected.todolist;
+    this.todolist.splice(index,1);
+    this.todo_list_selected.todolist = this.todolist;
+    this.updateToDoListToDB();
   }
 
 }

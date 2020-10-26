@@ -25,6 +25,14 @@ export class TodoNavComponent implements OnInit {
 
   }
 
+  onSubmitTitle(){
+    //add the new title to todomasterlist with an empty todolist.
+    //  update it in this.todo_master_list
+
+    //  update to the DB
+
+  }
+
   ngOnInit(): void {
   }
 
