@@ -25,4 +25,8 @@ export class TodoService {
   updateToDoList(listId: number, jsonBody: any): any{
     return this.todoDaoService.updateToDoList(listId, jsonBody);
   }
+
+  updateToDoMasterList(jsonBody: any){
+    return this.todoDaoService.updateToDoMasterList(jsonBody);
+  }
 }

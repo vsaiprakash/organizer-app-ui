@@ -35,6 +35,11 @@ export class TodoDaoService {
   updateToDoList(listId: number, jsonBody: any): any {
     return this.http
       .put("/api/todomasterlist/" + listId, JSON.stringify(jsonBody), this.httpOptions);
+  }
 
+  //To add or update items in todo master list
+  updateToDoMasterList(jsonBody: any){
+    return this.http
+      .post("/api/todomasterlist/", JSON.stringify(jsonBody), this.httpOptions);
   }
 }

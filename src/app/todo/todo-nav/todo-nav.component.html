@@ -1,6 +1,6 @@
 <h3>ToDo Master List {{todo_master_list}}</h3>
 <form (ngSubmit)="onSubmitTitle()">
-  <input type="text" placeholder="Enter list title">
+  <input type="text" placeholder="Enter list title" [(ngModel)]="new_list_title" name="newlisttitle">
   <input type="button" value="+">
 </form>
 <ul>
