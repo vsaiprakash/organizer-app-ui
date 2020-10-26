@@ -8,29 +8,52 @@
     <input type="button" [hidden]=!show_edit_title (click)="saveEditedListTitle(new_title.value)" value="Save" >
   </h3>
 </div>
-<form (ngSubmit)="onSubmitItem()" #itemUpdateForm="ngForm">
-  <input type="text" placeholder="Enter list item" [(ngModel)]="new_item_content" name="newitem">
-  <input type="submit" value="+">
+<form class="card p-2" (ngSubmit)="onSubmitItem()" #itemUpdateForm="ngForm">
+  <div class="input-group">
+    <input class="form-control"
+    type="text" placeholder="Enter list item" [(ngModel)]="new_item_content" name="newitem">
+    <div class="input-group-append">
+      <input class="btn btn-primary" type="submit" value="+">
+    </div>
+  </div>
 </form>
 <div *ngIf="todo_list_selected">
-  <ol>
-    <li *ngFor="let todo_list_item of todo_list_selected.todolist">
+  <ol class="list-group mb-3">
+    <li class="list-group-item d-flex justify-content-between lh-condensed"
+    *ngFor="let todo_list_item of todo_list_selected.todolist">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col-1 themed-grid-col">
+            <input type="checkbox"
+            (change)="onCheckedCompleted(todo_list_item.id)" [checked]=todo_list_item.completed>
+          </div>
+          <div class="col-6 themed-grid-col">
+            <span [hidden]=show_edit_item
+              [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
+              {{todo_list_item.content}}
+            </span>
+            <input type="text" [hidden]=!show_edit_item value={{todo_list_item.content}} #new_item>
+          </div>
+          <div class="col-2 themed-grid-col">
+            <input class="btn btn-primary"
+              type="button" [hidden]=show_edit_item (click)="toggle_show_edit_item()" value="Edit" [disabled]=todo_list_item.completed>
+            <input class="btn btn-primary"
+              type="button" [hidden]=!show_edit_item (click)="saveEditedItemContent(new_item.value, todo_list_item.id)" value="Save">
+          </div>
+          <div class="col-2 themed-grid-col">
+            <input  class="btn btn-danger"
+              type="button" value="Delete" (click)="deleteItem(todo_list_selected.todolist.indexOf(todo_list_item))">
+          </div>
+          <div class="col-2 themed-grid-col">
 
-      <input type="checkbox" (change)="onCheckedCompleted(todo_list_item.id)" [checked]=todo_list_item.completed>
+          </div>
+        </div>
+      </div>
 
-      <span [hidden]=show_edit_item
+      <!-- <span [hidden]=show_edit_item
         [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
         {{todo_list_selected.todolist.indexOf(todo_list_item)+1}}
-      </span>
-
-      <span [hidden]=show_edit_item
-        [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
-        {{todo_list_item.content}}
-      </span>
-      <input type="text" [hidden]=!show_edit_item value={{todo_list_item.content}} #new_item>
-      <input type="button" [hidden]=show_edit_item (click)="toggle_show_edit_item()" value="Edit" [disabled]=todo_list_item.completed>
-      <input type="button" [hidden]=!show_edit_item (click)="saveEditedItemContent(new_item.value, todo_list_item.id)" value="Save" >
-      <input type="button" value="Delete" (click)="deleteItem(todo_list_selected.todolist.indexOf(todo_list_item))">
+      </span> -->
     </li>
   </ol>
 </div>

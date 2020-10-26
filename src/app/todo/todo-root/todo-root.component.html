@@ -1,2 +1,8 @@
-<app-todo-nav (todoListIdEvent)="addItem($event)"></app-todo-nav>
-<app-todo-content [todo_list_selected_id]="todo_list_selected_in_nav_id" ></app-todo-content>
+<div class="row mb-3">
+  <div class="col-3 themed-grid-col" >
+    <app-todo-nav (todoListIdEvent)="addItem($event)"></app-todo-nav>
+  </div>
+  <div class="col-9 themed-grid-col" >
+    <app-todo-content [todo_list_selected_id]="todo_list_selected_in_nav_id" ></app-todo-content>
+  </div>
+</div>

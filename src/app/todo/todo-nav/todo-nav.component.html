@@ -1,11 +1,26 @@
-<h3>ToDo Master List {{todo_master_list}}</h3>
-<form (ngSubmit)="onSubmitTitle()" #titleUpdateForm="ngForm">
-  <input type="text" placeholder="Enter list title" [(ngModel)]="new_list_title" name="newlisttitle">
-  <input type="submit" value="+">
-</form>
-<ul>
-  <li *ngFor="let todo_list_item of todo_master_list" (click)="onSelected(todo_list_item.id)">
-    {{todo_list_item.title}}
-    <input type="button" value="Delete" (click)="deleteMasterListItem(todo_list_item.id, todo_master_list.indexOf(todo_list_item))">
-  </li>
-</ul>
+<h3>ToDo Master List</h3>
+<div class="sidebar-sticky pt-3">
+  <ul class="list-group mb-3">
+    <li>
+      <form class="card p-2" (ngSubmit)="onSubmitTitle()" #titleUpdateForm="ngForm">
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Enter list title" [(ngModel)]="new_list_title"
+            name="newlisttitle">
+          <div class="input-group-append">
+            <input class="btn btn-primary" type="submit" value="+">
+          </div>
+        </div>
+
+
+      </form>
+    </li>
+    <li class="list-group-item d-flex justify-content-between lh-condensed"
+      *ngFor="let todo_list_item of todo_master_list" (click)="onSelected(todo_list_item.id)">
+      {{todo_list_item.title}}
+      <input class="btn btn-danger" type="button" value="Delete"
+        (click)="deleteMasterListItem(todo_list_item.id, todo_master_list.indexOf(todo_list_item))">
+    </li>
+  </ul>
+</div>
+
+<!-- class="list-group-item d-flex justify-content-between lh-condensed" -->
