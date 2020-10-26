@@ -29,4 +29,8 @@ export class TodoService {
   updateToDoMasterList(jsonBody: any){
     return this.todoDaoService.updateToDoMasterList(jsonBody);
   }
+
+  deleteMasterListItem(id: number){
+    return this.todoDaoService.deleteMasterListItemById(id);
+  }
 }

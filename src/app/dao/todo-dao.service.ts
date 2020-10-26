@@ -34,12 +34,18 @@ export class TodoDaoService {
   //completion status of list item
   updateToDoList(listId: number, jsonBody: any): any {
     return this.http
-      .put("/api/todomasterlist/" + listId, JSON.stringify(jsonBody), this.httpOptions);
+               .put("/api/todomasterlist/" + listId, JSON.stringify(jsonBody), this.httpOptions);
   }
 
   //To add or update items in todo master list
   updateToDoMasterList(jsonBody: any){
     return this.http
-      .post("/api/todomasterlist/", JSON.stringify(jsonBody), this.httpOptions);
+               .post("/api/todomasterlist/", JSON.stringify(jsonBody), this.httpOptions);
+  }
+
+  //DELETE request by Id
+  deleteMasterListItemById(id: number){
+    return this.http
+               .delete("/api/todomasterlist/"+id, this.httpOptions);
   }
 }

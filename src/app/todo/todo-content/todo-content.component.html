@@ -1,9 +1,14 @@
 <h3>ToDo List Id selected in Nav: {{todo_list_selected_id}}</h3>
 <!-- {{todo_list_selected.todo-list}} -->
 <div *ngIf="todo_list_selected">
-  <h3>{{todo_list_selected.title}}</h3>
+  <h3>
+    <span [hidden]=show_edit_title>{{todo_list_selected.title}}</span>
+    <input type="text" [hidden]=!show_edit_title value={{todo_list_selected.title}} #new_title>
+    <input type="button" [hidden]=show_edit_title (click)="toggle_show_edit_title()" value="Edit">
+    <input type="button" [hidden]=!show_edit_title (click)="saveEditedListTitle(new_title.value)" value="Save" >
+  </h3>
 </div>
-<form (ngSubmit)="onSubmitItem()" >
+<form (ngSubmit)="onSubmitItem()" #itemUpdateForm="ngForm">
   <input type="text" placeholder="Enter list item" [(ngModel)]="new_item_content" name="newitem">
   <input type="submit" value="+">
 </form>
@@ -13,17 +18,18 @@
 
       <input type="checkbox" (change)="onCheckedCompleted(todo_list_item.id)" [checked]=todo_list_item.completed>
 
-      <span
+      <span [hidden]=show_edit_item
         [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
         {{todo_list_selected.todolist.indexOf(todo_list_item)+1}}
       </span>
 
-      <span
+      <span [hidden]=show_edit_item
         [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
         {{todo_list_item.content}}
       </span>
-
-      <input type="button" value="Edit" [disabled]=todo_list_item.completed>
+      <input type="text" [hidden]=!show_edit_item value={{todo_list_item.content}} #new_item>
+      <input type="button" [hidden]=show_edit_item (click)="toggle_show_edit_item()" value="Edit" [disabled]=todo_list_item.completed>
+      <input type="button" [hidden]=!show_edit_item (click)="saveEditedItemContent(new_item.value, todo_list_item.id)" value="Save" >
       <input type="button" value="Delete" (click)="deleteItem(todo_list_selected.todolist.indexOf(todo_list_item))">
     </li>
   </ol>

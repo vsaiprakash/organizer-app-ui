@@ -123,4 +123,56 @@ export class TodoContentComponent implements OnInit, OnChanges {
     this.updateToDoListToDB();
   }
 
+  item_content_for_update:String = "";
+
+  onEditItem(index: number){
+    this.todolist = this.todo_list_selected.todolist;
+    let item = this.todolist[index];
+    item.content = "[EDITED]"+item.content;
+    this.todolist[index] = item;
+    this.todo_list_selected.todolist = this.todolist;
+    this.updateToDoListToDB();
+  }
+
+  show_edit_title: boolean = false;
+  saveEditedListTitle(new_title_value: string){
+    this.todo_list_selected.title = new_title_value;
+    this.toggle_show_edit_title();
+    this.updateToDoListToDB();
+  }
+
+  toggle_show_edit_title(){
+    if(this.show_edit_title){
+      this.show_edit_title = false;
+    }
+    else{
+      this.show_edit_title = true;
+    }
+  }
+
+  show_edit_item: boolean = false;
+  edit_item_index = -1;
+  saveEditedItemContent(new_item_value: string, id: number){
+    this.todolist = this.todo_list_selected.todolist;
+    let item;
+    for(let i=0;i<this.todolist.length; ++i){
+      if(this.todolist[i].id==id){
+        this.todolist[i].content = new_item_value;
+      }
+    }
+    this.todo_list_selected.todolist = this.todolist;
+    this.updateToDoListToDB();
+    this.toggle_show_edit_item();
+  }
+
+  toggle_show_edit_item(){
+    if(this.show_edit_item){
+      this.show_edit_item = false;
+      this.edit_item_index = -1;
+    }
+    else{
+      this.show_edit_item = true;
+    }
+  }
+
 }

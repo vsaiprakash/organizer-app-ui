@@ -48,8 +48,7 @@ export class TodoNavComponent implements OnInit {
       "title": this.new_list_title,
       "todolist":[ ]
     };
-    //update the local todo_master_list with new item instead of pulling from DB
-    this.todo_master_list.push(item);
+
 
     //  update item to the DB with POST req to /mastertodolist
     this.todoService
@@ -57,8 +56,29 @@ export class TodoNavComponent implements OnInit {
       .subscribe(addedItem => {
         console.info("Added Item to ToDoMasterList DB - "+JSON.stringify(addedItem));
       });
+    //update the local todo_master_list with new item instead of pulling from DB
+    this.todo_master_list.push(item);
     //Reset the input after DB update
     this.new_list_title = "";
+  }
+
+  deleteMasterListItem(id: number, index:number){
+    //remove in local json
+    this.todo_master_list.splice(index,1);
+
+    //remove in DB
+    console.log("Id: "+id);
+    console.log("Before Master List: "+JSON.stringify(this.todo_master_list));
+    this.todoService
+        .deleteMasterListItem(id)
+        .subscribe();
+    console.log("After Master List: "+JSON.stringify(this.todo_master_list));
+
+    //after removing the List from DB,
+    //make sure the todo-content view doesnt show the deleted List
+    //So, we will use the emit() to show first list from todomasterlist by default
+    this.todoListIdEvent.emit(this.todo_master_list[0].id);
+    //if lists are deleted in masterlist, we need to make todo-content show nothing.
   }
 
 
