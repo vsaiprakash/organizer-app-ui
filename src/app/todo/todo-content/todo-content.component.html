@@ -1,59 +1,67 @@
-<h3>ToDo List Id selected in Nav: {{todo_list_selected_id}}</h3>
+<h4>
+  ToDo List selected:
+  <span *ngIf="todo_list_selected">{{todo_list_selected.title}}</span>
+</h4>
 <!-- {{todo_list_selected.todo-list}} -->
-<div *ngIf="todo_list_selected">
-  <h3>
-    <span [hidden]=show_edit_title>{{todo_list_selected.title}}</span>
-    <input type="text" [hidden]=!show_edit_title value={{todo_list_selected.title}} #new_title>
-    <input type="button" [hidden]=show_edit_title (click)="toggle_show_edit_title()" value="Edit">
-    <input type="button" [hidden]=!show_edit_title (click)="saveEditedListTitle(new_title.value)" value="Save" >
-  </h3>
-</div>
-<form class="card p-2" (ngSubmit)="onSubmitItem()" #itemUpdateForm="ngForm">
-  <div class="input-group">
-    <input class="form-control"
-    type="text" placeholder="Enter list item" [(ngModel)]="new_item_content" name="newitem">
-    <div class="input-group-append">
-      <input class="btn btn-primary" type="submit" value="+">
-    </div>
-  </div>
-</form>
-<div *ngIf="todo_list_selected">
-  <ol class="list-group mb-3">
-    <li class="list-group-item d-flex justify-content-between lh-condensed"
-    *ngFor="let todo_list_item of todo_list_selected.todolist">
-      <div class="container">
-        <div class="row mb-3">
-          <div class="col-1 themed-grid-col">
-            <input type="checkbox"
-            (change)="onCheckedCompleted(todo_list_item.id)" [checked]=todo_list_item.completed>
-          </div>
-          <div class="col-6 themed-grid-col">
-            <span [hidden]=show_edit_item
-              [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
-              {{todo_list_item.content}}
-            </span>
-            <input type="text" [hidden]=!show_edit_item value={{todo_list_item.content}} #new_item>
-          </div>
-          <div class="col-2 themed-grid-col">
-            <input class="btn btn-primary"
-              type="button" [hidden]=show_edit_item (click)="toggle_show_edit_item()" value="Edit" [disabled]=todo_list_item.completed>
-            <input class="btn btn-primary"
-              type="button" [hidden]=!show_edit_item (click)="saveEditedItemContent(new_item.value, todo_list_item.id)" value="Save">
-          </div>
-          <div class="col-2 themed-grid-col">
-            <input  class="btn btn-danger"
-              type="button" value="Delete" (click)="deleteItem(todo_list_selected.todolist.indexOf(todo_list_item))">
-          </div>
-          <div class="col-2 themed-grid-col">
+<div class="sidebar-sticky pt-3">
 
+
+  <form class="card p-2">
+
+    <div class="input-group">
+      <!-- <h5 [hidden]=show_edit_title>{{todo_list_selected.title}}</h5> -->
+      <input class="form-control" type="text" [disabled]=!show_edit_title value={{todo_list_selected.title}} #new_title>
+      <div class="input-group-append" [hidden]=show_edit_title>
+        <input class="btn btn-primary" type="button" (click)="toggle_show_edit_title()" value="Edit">
+      </div>
+      <div class="input-group-append" [hidden]=!show_edit_title>
+        <input class="btn btn-primary" type="button" (click)="saveEditedListTitle(new_title.value)" value="Save">
+      </div>
+    </div>
+
+  </form>
+  <form class="card p-2" (ngSubmit)="onSubmitItem()" #itemUpdateForm="ngForm">
+    <div class="input-group">
+      <input class="form-control" type="text" placeholder="Enter list item" [(ngModel)]="new_item_content"
+        name="newitem">
+      <div class="input-group-append">
+        <input class="btn btn-primary" type="submit" value="+">
+      </div>
+    </div>
+  </form>
+  <div *ngIf="todo_list_selected">
+    <ol class="list-group mb-3">
+      <li class="list-group-item d-flex justify-content-between lh-condensed"
+        *ngFor="let todo_list_item of todo_list_selected.todolist">
+        <div class="container">
+          <div class="row mb-3">
+            <div class="col-1 themed-grid-col">
+              <input class="form-check-input" type="checkbox" (change)="onCheckedCompleted(todo_list_item.id)"
+                [checked]=todo_list_item.completed>
+            </div>
+            <div class="col-6 themed-grid-col">
+              <span [hidden]=show_edit_item
+                [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
+                {{todo_list_item.content}}
+              </span>
+              <input type="text" [hidden]=!show_edit_item value={{todo_list_item.content}} #new_item>
+            </div>
+            <div class="col-2 themed-grid-col">
+              <input class="btn btn-primary" type="button" [hidden]=show_edit_item (click)="toggle_show_edit_item()"
+                value="Edit" [disabled]=todo_list_item.completed>
+              <input class="btn btn-primary" type="button" [hidden]=!show_edit_item
+                (click)="saveEditedItemContent(new_item.value, todo_list_item.id)" value="Save">
+            </div>
+            <div class="col-2 themed-grid-col">
+              <input class="btn btn-danger" type="button" value="Delete"
+                (click)="deleteItem(todo_list_selected.todolist.indexOf(todo_list_item))">
+            </div>
+            <div class="col-2 themed-grid-col">
+
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- <span [hidden]=show_edit_item
-        [style.text-decoration]="todo_list_item.completed ? completionItemStyleStrikeThrough : completionItemStyleNone">
-        {{todo_list_selected.todolist.indexOf(todo_list_item)+1}}
-      </span> -->
-    </li>
-  </ol>
+      </li>
+    </ol>
+  </div>
 </div>
