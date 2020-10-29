@@ -5,6 +5,15 @@ import { BehaviorSubject } from "rxjs";
 // import { Observable } from "rxjs/Observable"
 import { TodoService } from './../todo.service';
 
+import { v1 as uuidv1 } from 'uuid';
+
+const v1options = {
+  node: [0x01, 0x23, 0x45, 0x67, 0x89, 0xab],
+  clockseq: 0x1234,
+  msecs: new Date().getTime(),
+  nsecs: 5678,
+};
+
 @Component({
   selector: 'app-todo-content',
   templateUrl: './todo-content.component.html',
@@ -91,7 +100,7 @@ export class TodoContentComponent implements OnInit, OnChanges {
   onSubmitItem(){
     //add the selected item to current todomasterlist's todolist
     this.todolist = this.todo_list_selected.todolist;
-    let new_id = this.todolist.length+1;
+    let new_id = uuidv1(v1options);
     /*
         {
           "id": 1,
