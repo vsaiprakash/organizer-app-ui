@@ -100,7 +100,8 @@ export class TodoContentComponent implements OnInit, OnChanges {
   onSubmitItem(){
     //add the selected item to current todomasterlist's todolist
     this.todolist = this.todo_list_selected.todolist;
-    let new_id = uuidv1(v1options);
+    uuidv1(v1options);
+    let new_id = uuidv1();
     /*
         {
           "id": 1,

@@ -43,7 +43,8 @@ export class TodoNavComponent implements OnInit {
 
   onSubmitTitle(){
     //add the new title to todomasterlist with an empty todolist.
-    let new_id = uuidv1(v1options);
+     uuidv1(v1options);
+    let new_id = uuidv1();
     // let new_id = 11;
     /*
     {
@@ -86,7 +87,11 @@ export class TodoNavComponent implements OnInit {
     //after removing the List from DB,
     //make sure the todo-content view doesnt show the deleted List
     //So, we will use the emit() to show first list from todomasterlist by default
-    this.todoListIdEvent.emit(this.todo_master_list[0].id);
+    if(this.todo_master_list!=null){
+      if(this.todo_master_list.size()!=0){
+        this.todoListIdEvent.emit(this.todo_master_list[0].id);
+      }
+    }
     //if lists are deleted in masterlist, we need to make todo-content show nothing.
   }
 

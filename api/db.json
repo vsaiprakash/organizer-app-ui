@@ -2,35 +2,56 @@
   "todomasterlist": [
     {
       "id": 1,
-      "title": "Grociers",
+      "title": "Subjects",
       "todolist": [
         {
           "id": 1,
-          "completed": false,
-          "content": "sugar"
+          "completed": true,
+          "content": "Math"
         },
         {
           "id": 2,
           "completed": false,
-          "content": "dhal"
+          "content": "1"
         }
       ]
     },
     {
       "id": 2,
-      "title": "Homework",
+      "title": "Vegetables",
       "todolist": [
         {
-          "id": "1",
-          "completed": false,
-          "content": "social"
+          "id": 1,
+          "completed": true,
+          "content": "Tomatos"
         },
         {
-          "id": "2",
+          "id": 2,
+          "completed": true,
+          "content": "Cabbage"
+        },
+        {
+          "id": 3,
           "completed": false,
-          "content": "math"
+          "content": "Potatos"
         }
       ]
+    },
+    {
+      "id": 3,
+      "title": "Fruits",
+      "todolist": [
+        {
+          "id": 1,
+          "completed": true,
+          "content": "Apples"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "1",
+      "todolist": []
     }
   ]
 }
