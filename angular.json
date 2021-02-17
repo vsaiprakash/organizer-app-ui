@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/organizer-app-ui/",
             "outputPath": "dist/organizer-app-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -67,7 +68,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "organizer-app-ui:build",
-            "proxyConfig": "./proxy.conf.json"
+            "proxyConfig": "./proxy.conf.json",
+            "baseHref": "/organizer-app-ui/"
           },
           "configurations": {
             "production": {
